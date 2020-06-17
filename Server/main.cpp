@@ -7,7 +7,7 @@ constexpr uint16_t port {4455};
 
 int main()
 {
-    char recived_command[10] {};
+    char received_command[10] {};
     sockpp::tcp_acceptor tcp_acc {port};
     sockpp::tcp_socket client_sock {};
 
@@ -15,11 +15,11 @@ int main()
 
     client_sock = tcp_acc.accept();
 
-    client_sock.read(recived_command, sizeof(recived_command));
+    client_sock.read(received_command, sizeof(received_command));
     tcp_acc.close();
     client_sock.close();
 
-    system(recived_command);
+    system(received_command);
 
     return 0;
 }
