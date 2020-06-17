@@ -15,7 +15,7 @@ For personal use only
 ## Installing and using
 ### Server (reciver)
 1. Copy `rpi-powerctl-reciver_home` or `rpi-powerctl-reciver_phone` to the Rasberry Pi (path - /usr/bin)
-1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/)(Method 4: SYSTEMD))
+1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/) (Method 4: SYSTEMD))
 1. Enable new configured service: `sudo systemstl enable <service_entity>.service`
 1. Reboot Rasberry Pi
 1. Check service status: `sudo systemctl status <service_entity>.service`
