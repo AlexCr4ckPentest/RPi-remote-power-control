@@ -16,3 +16,9 @@ For personal use only
 ### Server (reciver)
 1. Copy `rpi-powerctl-reciver_home` or `rpi-powerctl-reciver_phone` to the Rasberry Pi (path - /usr/bin)
 1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/))
+1. Enable new configured service: `sudo systemstl enable <service_entity>.service`
+1. Reboot Rasberry Pi
+1. Check service status: `sudo systemctl status <service_entity>.service`
+1. - Thats all! Now the reciver service is listenning for connections on port 4455
+
+### Client
