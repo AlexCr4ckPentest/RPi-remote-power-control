@@ -22,3 +22,8 @@ For personal use only
 1. That's all! Now the receiver service is listening for connections on port 4455
 
 ### Client
+1. If you not configured receiver - configure it
+1. Run `rpi-powerctl-sender_home <command>` or `rpi-powerctl-sender_phone <command>`
+#### Power control commands
+1. `reboot` - reboot the Rasberry Pi
+1. `poweroff` - poweroff the Rasberry Pi
