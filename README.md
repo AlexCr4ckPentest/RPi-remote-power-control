@@ -7,14 +7,13 @@ For personal use only
 1. Rasberry Pi and installed Rasberry Pi OS xD
 
 ## Building
+1. Build the [Sockpp](https://github.com/fpagliughi/sockpp) library (if not builded)
 1. Run `make all` or `make` for build all versions
 1. Run `make home_net` for build version for home local network
 1. Run `make phone_net` for build version for phone local network
 1. Run `make clean` for delete all binaries
 
 ## Installing and using
-### Before
-1. Build the [Sockpp](https://github.com/fpagliughi/sockpp) library
 ### Server (receiver)
 1. Copy `rpi-powerctl-receiver_home` or `rpi-powerctl-receiver_phone` to the Rasberry Pi (path - /usr/bin)
 1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/) (Method 4: SYSTEMD))
