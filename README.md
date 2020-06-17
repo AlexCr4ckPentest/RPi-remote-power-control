@@ -7,7 +7,12 @@ For personal use only
 1. Rasberry Pi and installed Rasberry Pi OS xD
 
 ## Building
-1. run `make all` or `make` for build all versions
-1. run `make phone_net` for build version for phone local network
-1. run `make home_net` for build version for home local network
-1. run `make clean` for delete all binaries
+1. Run `make all` or `make` for build all versions
+1. Run `make home_net` for build version for home local network
+1. Run `make phone_net` for build version for phone local network
+1. Run `make clean` for delete all binaries
+
+## Installing and using
+### Server (reciver)
+1. Copy `rpi-powerctl-reciver_home` or `rpi-powerctl-reciver_phone` to the Rasberry Pi (path - /usr/bin)
+1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/))
