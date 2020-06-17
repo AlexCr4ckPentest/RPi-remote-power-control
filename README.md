@@ -21,7 +21,7 @@ For personal use only
 1. Check service status: `sudo systemctl status <service_entity>.service`
 1. That's all! Now the receiver service is listening for connections on port 4455
 
-### Client
+### Client (sender)
 1. If you not configured receiver - configure it
 1. Run `rpi-powerctl-sender_home <command>` or `rpi-powerctl-sender_phone <command>`
 #### Power control commands
