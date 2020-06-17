@@ -13,6 +13,8 @@ For personal use only
 1. Run `make clean` for delete all binaries
 
 ## Installing and using
+### Before
+1. Build the [Sockpp](https://github.com/fpagliughi/sockpp) library
 ### Server (receiver)
 1. Copy `rpi-powerctl-receiver_home` or `rpi-powerctl-receiver_phone` to the Rasberry Pi (path - /usr/bin)
 1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/) (Method 4: SYSTEMD))
@@ -20,7 +22,6 @@ For personal use only
 1. Reboot Rasberry Pi
 1. Check service status: `sudo systemctl status <service_entity>.service`
 1. That's all! Now the receiver service is listening for connections on port 4455
-
 ### Client (sender)
 1. If you not configured receiver - configure it
 1. Run `rpi-powerctl-sender_home <command>` or `rpi-powerctl-sender_phone <command>`
