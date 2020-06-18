@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
 static inline void show_usage(const char *prog_name)
 {
-    std::cerr << "Usage: " << prog_name << " <comand>\n"
+    std::cout << "Usage: " << prog_name << " <comand>\n"
               << "Available commands:\n"
               << "reboot    - reboot the target\n"
               << "poweroff  - shutdown the target\n";
