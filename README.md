@@ -1,5 +1,4 @@
 # Rasberry_Pi-remote-power-control
-For personal use only
 
 ## Dependencies
 1. C++ Compiler (with C++17 support)
