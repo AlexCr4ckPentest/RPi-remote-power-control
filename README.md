@@ -1,4 +1,4 @@
-# Rasberry_Pi-remote-power-control
+# RPi-remote-power-control
 Simple utility for remote power control for Rasberry Pi
 
 ## Dependencies
