@@ -1,29 +1,19 @@
-CXX=g++
-CXXFLAGS=-std=c++17
-LIBS=sockpp
+C=gcc
+CFLAGS=-Os -Wall
 
-CLIENT=Client/main.cpp
-SERVER=Server/main.cpp
+CLIENT=Client/main.c
+SERVER=Server/main.c
 
-all: home_build phone_build
-
-home_build: rpi-powerctl-sender_home \
-			rpi-powerctl-receiver_home
-
-phone_build: rpi-powerctl-sender_phone \
-			 rpi-powerctl-receiver_phone
+all: rpi-powerctl-sender_home rpi-powerctl-sender_hotspot rpi-powerctl-receiver
 
 rpi-powerctl-sender_home: $(CLIENT)
-	$(CXX) $(CLIENT) -DHOME_NET -l$(LIBS) $(CXXFLAGS) -o $@
+	$(C) $(CLIENT) -DHOME_LAN_NETWORK $(CFLAGS) -o $@
 
-rpi-powerctl-receiver_home: $(SERVER)
-	$(CXX) $(SERVER) -DHOME_NET -l$(LIBS) $(CXXFLAGS) -o $@
+rpi-powerctl-sender_hotspot: $(CLIENT)
+	$(C) $(CLIENT) -DHOTSPOT_LAN_NETWORK $(CFLAGS) -o $@
 
-rpi-powerctl-sender_phone: $(CLIENT)
-	$(CXX) $(CLIENT) -DPHONE_NET -l$(LIBS) $(CXXFLAGS) -o $@
-
-rpi-powerctl-receiver_phone: $(SERVER)
-	$(CXX) $(SERVER) -DPHONE_NET -l$(LIBS) $(CXXFLAGS) -o $@
+rpi-powerctl-receiver: $(SERVER)
+	$(C) $(SERVER) $(CFLAGS) -o $@
 
 clean:
 	rm -f *rpi-powerctl*
