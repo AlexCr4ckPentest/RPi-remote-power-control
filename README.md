@@ -6,10 +6,9 @@ Simple utility for remote power control for Rasberry Pi
 1. Raspberry Pi and installed Raspberry Pi OS xD
 
 ## Building
-1. Run `make all` or `make` for build all versions
-1. Run `make rpi-powerctl-sender_home` for build version for home local network
-1. Run `make rpi-powerctl-sender_hotspot` for build version for hotspot local network
-1. Run `make rpi-powerctl-receiver` for build receiver
+1. Run `make all` or `make` for build all
+1. Run `make rpi-powerctl-sender` for command sender (client)
+1. Run `make rpi-powerctl-receiver` for build receiver (server)
 1. Run `make clean` for delete all binaries
 
 ## Installing and using
@@ -22,4 +21,4 @@ Simple utility for remote power control for Rasberry Pi
 1. That's all! Now the receiver service is listening for connections on port 4455
 ### Client (sender)
 1. If you not configured receiver - configure it
-1. Run `./rpi-powerctl-sender_home` or `./rpi-powerctl-sender_hotspot` for show help
+1. Run `./rpi-powerctl-sender` for show help
