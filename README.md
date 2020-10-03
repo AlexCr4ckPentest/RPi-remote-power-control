@@ -22,4 +22,4 @@ Simple utility for remote power control for Rasberry Pi
 1. That's all! Now the receiver service is listening for connections on port 4455
 ### Client (sender)
 1. If you not configured receiver - configure it
-1. Run `./rpi-powerctl-sender_home` for show help
+1. Run `./rpi-powerctl-sender_home` or `./rpi-powerctl-sender_hotspot` for show help
