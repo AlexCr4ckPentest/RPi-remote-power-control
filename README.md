@@ -7,14 +7,15 @@ Simple utility for remote power control for Rasberry Pi
 
 ## Building
 1. Run `make all` or `make` for build all versions
-1. Run `make home_net` for build version for home local network
-1. Run `make phone_net` for build version for hotspot local network
+1. Run `make rpi-powerctl-sender_home` for build version for home local network
+1. Run `make rpi-powerctl-sender_hotspot` for build version for hotspot local network
+1. Run `make rpi-powerctl-receiver` for build receiver
 1. Run `make clean` for delete all binaries
 
 ## Installing and using
 ### Server (receiver)
 1. Copy `rpi-powerctl-receiver` executable file to the Raspberry Pi (path - /usr/bin)
-1. Configure the service entity for systemd ([See here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/) (Method 4: SYSTEMD))
+1. Configure the service entity for systemd ([See here -> Method 4: SYSTEMD](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/))
 1. Enable new configured service: `sudo systemctl enable <service_entity>.service`
 1. Reboot Raspberry Pi
 1. Check service status: `sudo systemctl status <service_entity>.service`
