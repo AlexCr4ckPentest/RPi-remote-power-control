@@ -1,6 +1,8 @@
 # RPi-remote-power-control
 Simple utility for remote power control for Rasberry Pi
 
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/AlexCr4ckPentest/RPi-remote-power-control.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AlexCr4ckPentest/RPi-remote-power-control/context:cpp)
+
 ## Dependencies
 1. C Compiler
 1. Raspberry Pi and installed Raspberry Pi OS xD
