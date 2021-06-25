@@ -2,13 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <getopt.h>
-#include <stdarg.h>
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netdb.h>
+#include "include/run_server.h"
+#include "include/run_client.h"
 
 #define PORT 4457
 
@@ -35,78 +31,6 @@ void show_help(const char* exe_name)
     printf("\t--poweroff [addr]\tshutdown the target\n");
 }
 
-
-
-int run_server()
-{
-    int server_socket_fd;
-    int client_socket_fd;
-    
-    struct sockaddr_in server_addr;
-    char received_command[9] = {0};
-
-    if ((server_socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-    {
-        return 1;
-    }
-
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(PORT);
-    server_addr.sin_addr.s_addr = INADDR_ANY;
-
-    if (bind(server_socket_fd, (struct sockaddr*)&server_addr, (socklen_t)sizeof(server_addr)) < 0)
-    {
-        return 2;
-    }
-
-    listen(server_socket_fd, 1);
-
-    if ((client_socket_fd = accept(server_socket_fd, NULL, NULL)) < 0)
-    {
-        return 3;
-    }
-
-    read(client_socket_fd, received_command, sizeof(received_command));
-
-    close(client_socket_fd);
-    close(server_socket_fd);
-
-    // Need run as root
-    system(received_command);
-
-    return 0;
-}
-
-
-
-int run_client(const char* const cmd, const char* remote_addr)
-{
-    if (cmd == NULL)
-    {
-        return 1;
-    }
-
-    const int cmd_is_reboot     = (strcmp(cmd, "reboot") == 0);
-    const int cmd_is_poweroff   = (strcmp(cmd, "poweroff") == 0);
-
-    if (cmd_is_reboot)
-    {
-        printf("Sending 'reboot' command to %s:%d\n", optarg, PORT);
-    }
-    else if (cmd_is_poweroff)
-    {
-        printf("Sending 'poweroff' command to %s:%d\n", optarg, PORT);
-    }
-    else
-    {
-        return 2;
-    }
-
-    return 0;
-}
-
-
-
 int main(int argc, char** argv)
 {
     if (argc < 2)
@@ -115,13 +39,12 @@ int main(int argc, char** argv)
         exit(EXIT_SUCCESS);
     }
 
-    int option_index;
     int curr_option;
     int error_code;
 
     while (1)
     {
-        curr_option = getopt_long_only(argc, argv, "hs:rp", program_options, &option_index);
+        curr_option = getopt_long_only(argc, argv, "hs:rp", program_options, NULL);
 
         if (curr_option == -1)
         {
@@ -135,13 +58,13 @@ int main(int argc, char** argv)
             exit(EXIT_SUCCESS);
             break;
         case 's':
-            error_code = run_server();
+            error_code = run_server(PORT);
             break;
         case 'r':
-            error_code = run_client("reboot", optarg);
+            error_code = run_client("reboot", optarg, PORT);
             break;
         case 'p':
-            error_code = run_client("poweroff", optarg);
+            error_code = run_client("poweroff", optarg, PORT);
             break;
         }
     }
