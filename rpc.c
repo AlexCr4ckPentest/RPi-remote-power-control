@@ -39,8 +39,8 @@ int main(int argc, char** argv)
         exit(EXIT_SUCCESS);
     }
 
-    int curr_option;
-    int error_code;
+    int curr_option = 0;
+    int error_code = 0;
 
     while (1)
     {
