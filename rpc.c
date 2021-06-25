@@ -16,10 +16,10 @@
 
 static struct option program_options[] =
 {
-    {"help",        no_argument,        0, 0},
-    {"server",      no_argument,        0, 0},
-    {"reboot",      required_argument,  0, 0},
-    {"poweroff",    required_argument,  0, 0}
+    {"help",        no_argument,        0, 'h'},
+    {"server",      no_argument,        0, 's'},
+    {"reboot",      required_argument,  0, 'r'},
+    {"poweroff",    required_argument,  0, 'p'}
 };
 
 
@@ -91,11 +91,11 @@ int run_client(const char* const cmd, const char* remote_addr)
 
     if (cmd_is_reboot)
     {
-
+        printf("Sending 'reboot' command to %s:%d\n", optarg, PORT);
     }
     else if (cmd_is_poweroff)
     {
-
+        printf("Sending 'poweroff' command to %s:%d\n", optarg, PORT);
     }
     else
     {
@@ -112,7 +112,7 @@ int main(int argc, char** argv)
     if (argc < 2)
     {
         show_help(argv[0]);
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
 
     int option_index;
@@ -121,7 +121,7 @@ int main(int argc, char** argv)
 
     while (1)
     {
-        curr_option = getopt_long_only(argc, argv, "h:srp", program_options, &option_index);
+        curr_option = getopt_long_only(argc, argv, "hs:rp", program_options, &option_index);
 
         if (curr_option == -1)
         {
@@ -138,10 +138,10 @@ int main(int argc, char** argv)
             error_code = run_server();
             break;
         case 'r':
-            error_code = run_client("reboot");
+            error_code = run_client("reboot", optarg);
             break;
         case 'p':
-            error_code = run_client("poweroff");
+            error_code = run_client("poweroff", optarg);
             break;
         }
     }
