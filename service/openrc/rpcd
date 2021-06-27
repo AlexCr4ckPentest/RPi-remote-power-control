@@ -1,0 +1,10 @@
+#!/sbin/openrc-run
+
+# Copyright 2021 (C) AlexCr4ckPentest
+# OpenRC service unit for remote-power-control server
+
+name="remote-power-control"
+description="Simple CLI utility for remote power control over LAN"
+command="/home/alex/Documents/Programming/remote-power-control/build/rpc"
+command_args="--server"
+
