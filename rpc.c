@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <unistd.h>
 #include <getopt.h>
+
+#include <signal.h>
+#include <syslog.h>
+#include <sys/stat.h>
 
 #include "include/run_server.h"
 #include "include/run_client.h"
@@ -31,6 +35,39 @@ void show_help(const char* exe_name)
     printf("\t--poweroff [addr]\tshutdown the target\n");
 }
 
+
+
+void terminate()
+{
+    exit(EXIT_SUCCESS);
+}
+
+void daemonize_process()
+{
+    pid_t pid = fork();
+
+    if (pid < 0) { exit(EXIT_FAILURE); }
+    if (pid > 0) { exit(EXIT_SUCCESS); }
+
+    if (setsid() < 0) { exit(EXIT_FAILURE); }
+
+    signal(SIGTERM, terminate);
+    signal(SIGHUP, SIG_IGN);
+
+    pid = fork();
+
+    if (pid < 0) { exit(EXIT_FAILURE); }
+    if (pid > 0) { exit(EXIT_SUCCESS); }
+
+    umask(0);
+
+    chdir("/");
+
+    openlog("rpc-server", LOG_PID, LOG_DAEMON);
+}
+
+
+
 int main(int argc, char** argv)
 {
     if (argc < 2)
@@ -58,6 +95,7 @@ int main(int argc, char** argv)
             exit(EXIT_SUCCESS);
             break;
         case 's':
+            daemonize_process();
             error_code = run_server(PORT);
             break;
         case 'r':

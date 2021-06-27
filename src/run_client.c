@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-int run_client(const char* const cmd, const char* remote_addr_str, unsigned port)
+int run_client(const char* const cmd, const char* const remote_addr_str, unsigned port)
 {
     const int cmd_is_reboot     = (strcmp(cmd, "reboot") == 0);
     const int cmd_is_poweroff   = (strcmp(cmd, "poweroff") == 0);
