@@ -46,24 +46,30 @@ void daemonize_process()
 {
     pid_t pid = fork();
 
-    if (pid < 0) { exit(EXIT_FAILURE); }
-    if (pid > 0) { exit(EXIT_SUCCESS); }
+    if (pid < 0)
+        exit(EXIT_FAILURE);
 
-    if (setsid() < 0) { exit(EXIT_FAILURE); }
+    if (pid > 0)
+        exit(EXIT_SUCCESS);
+
+
+    if (setsid() < 0)
+        exit(EXIT_FAILURE);
 
     signal(SIGTERM, terminate);
     signal(SIGHUP, SIG_IGN);
 
     pid = fork();
 
-    if (pid < 0) { exit(EXIT_FAILURE); }
-    if (pid > 0) { exit(EXIT_SUCCESS); }
+    if (pid < 0)
+        exit(EXIT_FAILURE);
+
+    if (pid > 0)
+        exit(EXIT_SUCCESS);
 
     umask(0);
 
     chdir("/");
-
-    openlog("rpc-server", LOG_PID, LOG_DAEMON);
 }
 
 
@@ -84,9 +90,7 @@ int main(int argc, char** argv)
         curr_option = getopt_long_only(argc, argv, "hs:rp", program_options, NULL);
 
         if (curr_option == -1)
-        {
             break;
-        }
 
         switch (curr_option)
         {
