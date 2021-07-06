@@ -5,6 +5,5 @@
 
 name="remote-power-control"
 description="Simple CLI utility for remote power control over LAN"
-command="/home/alex/Documents/Programming/remote-power-control/build/rpc"
+command="/usr/local/bin/rpc"
 command_args="--server"
-
