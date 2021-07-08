@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 #include <errno.h>
 #include <unistd.h>
 #include <netdb.h>
@@ -17,6 +17,7 @@ int run_server(unsigned port)
     
     struct sockaddr_in server_addr;
     char received_command[9] = {0};
+    char cmd_path[256]= {0};
 
     server_socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -52,8 +53,11 @@ int run_server(unsigned port)
     close(client_socket_fd);
     close(server_socket_fd);
 
-    // Need run as root
-    system(received_command);
+    strcpy(cmd_path, "/usr/bin/");
+    strcat(cmd_path, received_command);
+
+    char* const argv[] = {cmd_path};
+    execv(cmd_path, argv);
 
     return 0;
 }
